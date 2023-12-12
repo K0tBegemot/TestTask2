@@ -11,7 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,12 +23,14 @@ import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/library")
 public class RecordViewController {
     private LibraryService libraryService;
-    private static final LibraryRecordDTO DEFAULT_RECORD = new LibraryRecordDTO(null, "", null, null, null, null);
+    private static final LibraryRecordDTO DEFAULT_RECORD = new LibraryRecordDTO(null, "", null, null);
     private static final Logger logger = LoggerFactory.getLogger(RecordViewController.class);
 
     public RecordViewController(LibraryServiceImpl libraryService1)
@@ -50,7 +54,14 @@ public class RecordViewController {
             modelAndView.addObject("action", "/book/add");
             return modelAndView;
         }
-        libraryService.saveOrUpdateEntity(newEntity);
+        Optional<List<FieldError>> errors = libraryService.saveAndValidateEntity(newEntity);
+        if(errors.isPresent())
+        {
+            errors.get().stream().forEach(result::addError);
+            ModelAndView modelAndView = new ModelAndView("addOrEditRecord");
+            modelAndView.addObject("action", "/book/add");
+            return modelAndView;
+        }
         request.setAttribute(
                 View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.FOUND);
         return new ModelAndView("redirect:/book/listPage");
