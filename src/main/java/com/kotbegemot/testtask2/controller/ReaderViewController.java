@@ -47,6 +47,7 @@ public class ReaderViewController {
         Paged<ReaderDTO> readers = readerService.getPageByNumber(pageNumber, pageSize);
         model.addAttribute("pageSizes", PAGE_SIZE_LIST);
         model.addAttribute("page", readers);
+        model.addAttribute("pagingReference", "/reader/listPage");
         return "readers";
     }
 
@@ -54,6 +55,7 @@ public class ReaderViewController {
     public String getReaderAddPage(Model model) {
         model.addAttribute("newEntity", DEFAULT_READER);
         model.addAttribute("action", "/reader/add");
+        model.addAttribute("buttonText", "Add reader");
         return "addOrEditReader";
     }
 
@@ -62,6 +64,7 @@ public class ReaderViewController {
         ReaderDTO readerDTO = readerService.getEntityDTOById(id);
         model.addAttribute("newEntity", readerDTO);
         model.addAttribute("action", "/reader/edit");
+        model.addAttribute("buttonText", "Edit reader");
         return "addOrEditReader";
     }
 
@@ -74,6 +77,7 @@ public class ReaderViewController {
             }
             ModelAndView modelAndView = new ModelAndView("addOrEditReader");
             modelAndView.addObject("action", "/reader/add");
+            modelAndView.addObject("buttonText", "Add reader");
             return modelAndView;
         }
         readerService.saveOrUpdateEntity(newEntity);
@@ -88,6 +92,7 @@ public class ReaderViewController {
         if (result.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("addOrEditReader");
             modelAndView.addObject("action", "/reader/edit");
+            modelAndView.addObject("buttonText", "Edit reader");
             return modelAndView;
         }
         readerService.saveOrUpdateEntity(newEntity);

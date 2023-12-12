@@ -54,30 +54,31 @@
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
                         <li class="page-item"><a class="page-link"
-                                                 th:href="@{/news/mainPage(pageNumber=0,pageSize=${page.size})}">First</a>
+                                                 th:href="@{${pagingReference}(pageNumber=0,pageSize=${page.size})}">First</a>
                         </li>
                         <li class="page-item"><a class="page-link"
                                                  th:if="${page.number - 1 >= 0}"
-                                                 th:href="@{/news/mainPage(pageNumber=${page.number - 1},pageSize=${page.size})}"
+                                                 th:href="@{${pagingReference}(pageNumber=${page.number - 1},pageSize=${page.size})}"
                                                  th:text="${page.number}"></a></li>
                         <li class="page-item"><a class="page-link"
-                                                 th:href="@{/news/mainPage(pageNumber=${page.number},pageSize=${page.size})}"
+                                                 th:href="@{${pagingReference}(pageNumber=${page.number},pageSize=${page.size})}"
                                                  th:text="${page.number + 1}"></a></li>
                         <li class="page-item"><a class="page-link"
                                                  th:if="${page.number + 1 < page.allPageNumber}"
-                                                 th:href="@{/news/mainPage(pageNumber=${page.number + 1},pageSize=${page.size})}"
+                                                 th:href="@{${pagingReference}(pageNumber=${page.number + 1},pageSize=${page.size})}"
                                                  th:text="${page.number + 2}"></a></li>
                         <li class="page-item"><a class="page-link"
-                                                 th:href="@{/news/mainPage(pageNumber=${page.allPageNumber - 1},pageSize=${page.size})}">Last</a>
+                                                 th:href="@{${pagingReference}(pageNumber=${page.allPageNumber - 1},pageSize=${page.size})}">Last</a>
                         </li>
                     </ul>
                 </nav>
                 <div th:each="new_item: ${page.objectList}" style="width: 100%; grid-column-start: 2; grid-column-end: 3"
                      class="border border-dark p-2">
                     <a class="btn btn-secondary dropdown-toggle" th:href="@{/book/editPage(id=${new_item.id})}">Edit book</a>
-                    <span><p th:text="${new_item.name}" disabled="true"></p></span>
-                    <span><p th:text="${new_item.author}" disabled="true"></p></span>
-                    <span th:text="${new_item.isbn}" disabled="true"></span>
+                    <span><p th:text="'Id -  ' + ${new_item.id}" disabled="true"></p></span>
+                    <span><p th:text="'Name - ' + ${new_item.name}" disabled="true"></p></span>
+                    <span><p th:text="'Author - ' + ${new_item.author}" disabled="true"></p></span>
+                    <span th:text="'ISBN - ' + ${new_item.isbn}" disabled="true"></span>
                 </div>
             </div>
         </div>

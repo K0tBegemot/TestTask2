@@ -34,11 +34,11 @@
              class="border border-dark p-2">
             <span>
                 <form method="post" enctype="multipart/form-data" th:object="${newEntity}" th:action="@{{path}(path=${action})}">
-                    <div class="mb-3" hidden>
+                    <div class="mb-3">
                         <label for="id" class="form-label">
-                            Book id
+                            Reader id
                         </label>
-                        <input type="text" id="id" class="form-control" placeholder="0" name="id" th:field="*{id}">
+                        <input type="text" id="id" class="form-control" placeholder="0" name="id" th:field="*{id}" readonly="readonly">
                     </div>
                     <div class="mb-3">
                         <label for="firstName" class="form-label">First name</label>
@@ -66,14 +66,14 @@
                              class="alert alert-warning invalid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="birthday" class="form-label">Last name</label>
+                        <label for="birthday" class="form-label">Birth day</label>
                         <input type="date" name="birthday" id="birthday" class="form-control" placeholder="01-01-2012"
                                th:class="${#fields.hasErrors('birthday')}? 'form-control is-invalid' : 'form-control'"
                                th:field="*{birthday}">
                         <div th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"
                              class="alert alert-warning invalid-feedback"></div>
                     </div>
-                    <button class="btn btn-dark text-light nav-item active" type="submit">Add reader</button>
+                    <button class="btn btn-dark text-light nav-item active" type="submit" th:text="${buttonText}"></button>
                 </form>
             </span>
         </div>

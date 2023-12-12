@@ -45,6 +45,7 @@ public class BookViewController {
                                       Model model) {
         Paged<BookDTO> books = bookService.getPageByNumber(pageNumber, pageSize);
         model.addAttribute("pageSizes", PAGE_SIZE_LIST);
+        model.addAttribute("pagingReference", "/book/listPage");
         model.addAttribute("page", books);
         return "books";
     }
@@ -53,6 +54,7 @@ public class BookViewController {
     public String getBookAddPage(Model model) {
         model.addAttribute("newEntity", DEFAULT_BOOK);
         model.addAttribute("action", "/book/add");
+        model.addAttribute("buttonText", "Add book");
         return "addOrEditBook";
     }
 
@@ -61,6 +63,7 @@ public class BookViewController {
         BookDTO bookDTO = bookService.getEntityDTOById(id);
         model.addAttribute("newEntity", bookDTO);
         model.addAttribute("action", "/book/edit");
+        model.addAttribute("buttonText", "Edit book");
         return "addOrEditBook";
     }
 
@@ -73,6 +76,7 @@ public class BookViewController {
             }
             ModelAndView modelAndView = new ModelAndView("addOrEditBook");
             modelAndView.addObject("action", "/book/add");
+            modelAndView.addObject("buttonText", "Add book");
             return modelAndView;
         }
         bookService.saveOrUpdateEntity(newEntity);
@@ -87,6 +91,7 @@ public class BookViewController {
         if (result.hasErrors()) {
             ModelAndView modelAndView = new ModelAndView("addOrEditBook");
             modelAndView.addObject("action", "/book/edit");
+            modelAndView.addObject("buttonText", "Edit book");
             return modelAndView;
         }
         bookService.saveOrUpdateEntity(newEntity);

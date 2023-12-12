@@ -41,6 +41,7 @@ public class RecordViewController {
     public String getRecordAddPage(Model model) {
         model.addAttribute("newEntity", DEFAULT_RECORD);
         model.addAttribute("action", "/library/add");
+        model.addAttribute("buttonText", "Add record");
         return "addOrEditRecord";
     }
     @PostMapping(path = "/add", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -52,6 +53,7 @@ public class RecordViewController {
             }
             ModelAndView modelAndView = new ModelAndView("addOrEditRecord");
             modelAndView.addObject("action", "/book/add");
+            modelAndView.addObject("buttonText", "Add record");
             return modelAndView;
         }
         Optional<List<FieldError>> errors = libraryService.saveAndValidateEntity(newEntity);
@@ -60,6 +62,7 @@ public class RecordViewController {
             errors.get().stream().forEach(result::addError);
             ModelAndView modelAndView = new ModelAndView("addOrEditRecord");
             modelAndView.addObject("action", "/book/add");
+            modelAndView.addObject("buttonText", "Add record");
             return modelAndView;
         }
         request.setAttribute(

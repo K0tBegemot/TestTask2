@@ -34,11 +34,11 @@
              class="border border-dark p-2">
             <span>
                 <form method="post" enctype="multipart/form-data" th:object="${newEntity}" th:action="@{{path}(path=${action})}">
-                    <div class="mb-3" hidden>
+                    <div class="mb-3">
                         <label for="id" class="form-label">
                             Library record id
                         </label>
-                        <input type="text" id="id" class="form-control" placeholder="0" name="id" th:field="*{id}">
+                        <input type="text" id="id" class="form-control" placeholder="0" name="id" th:field="*{id}" readonly="readonly">
                     </div>
                     <div class="mb-3">
                         <label for="pickupTime" class="form-label">Pickup time</label>
@@ -65,7 +65,7 @@
                         <div th:if="${#fields.hasErrors('bookId')}" th:errors="*{bookId}"
                              class="alert alert-warning invalid-feedback"></div>
                     </div>
-                    <button class="btn btn-dark text-light nav-item active" type="submit">Add record</button>
+                    <button class="btn btn-dark text-light nav-item active" type="submit" th:text="${buttonText}"></button>
                 </form>
             </span>
         </div>
