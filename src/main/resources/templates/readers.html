@@ -24,7 +24,7 @@
         <a class="btn btn-dark text-light nav-item active" href="/reader/addPage">
             Add reader
         </a>
-        <a class="btn btn-dark text-light nav-item active" href="/library/getBookPage">
+        <a class="btn btn-dark text-light nav-item active" href="/library/addPage">
             Get book
         </a>
         <!--        </div>-->
@@ -32,10 +32,10 @@
     <div style="display: grid; grid-template-columns : 1fr 9fr 1fr">
         <figure th:if="${page.objectList.empty}" class="text-center" style="grid-column-start: 2; grid-column-end: 3">
             <blockquote class="blockquote">
-                <p>There is no news. Be the first to add news</p>
+                <p>There is no readers. Be the first!</p>
             </blockquote>
             <figcaption class="blockquote-footer">
-                Newsline team
+                Library team
             </figcaption>
         </figure>
         <div th:if="${!page.objectList.empty}" style="grid-column-start: 2; grid-column-end: 3">

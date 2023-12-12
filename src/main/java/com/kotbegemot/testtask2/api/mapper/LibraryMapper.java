@@ -23,8 +23,9 @@ public abstract class LibraryMapper implements EntityMapper<LibraryRecord, Libra
     public abstract LibraryRecord dtoToEntity(LibraryRecordDTO dto);
     @Mapping(target = "bookId", expression = "java( record.getBook().getId())")
     @Mapping(target = "readerId", expression = "java( record.getReader().getId())")
-    @Mapping(target = "reader", constant = "null")
-    @Mapping(target = "book", constant = "null")
+//    @Mapping(target = "reader", constant = "null")
+//    @Mapping(target = "book", constant = "null")
+    @Mapping(target = "pickupTime", source = "pickupTime")
     public abstract LibraryRecordDTO entityToDTO(LibraryRecord record);
     public abstract List<LibraryRecordDTO> entityListToDTO(List<LibraryRecord> bookList);
 }

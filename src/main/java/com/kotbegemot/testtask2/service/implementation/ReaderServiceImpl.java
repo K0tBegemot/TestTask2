@@ -8,11 +8,23 @@ import com.kotbegemot.testtask2.service.ReaderService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class ReaderServiceImpl extends EntityServiceImpl<ReaderDTO, Reader, ReaderRepository, ReaderMapper> implements ReaderService {
-    public ReaderServiceImpl(ReaderRepository readerRepository1, ReaderMapper readerMapper1)
+    private final ReaderRepository readerRepository;
+
+    public ReaderServiceImpl(ReaderRepository readerRepository1, ReaderMapper readerMapper1,
+                             ReaderRepository readerRepository)
     {
         super(readerRepository1, readerMapper1);
+        this.readerRepository = readerRepository;
+    }
+
+    @Override
+    public List<Reader> findAll()
+    {
+        return readerRepository.findAll();
     }
 }

@@ -4,10 +4,7 @@ import com.kotbegemot.testtask2.api.annotation.ValidDate;
 import com.kotbegemot.testtask2.api.annotation.ValidLibraryRecordDTO;
 import com.kotbegemot.testtask2.api.entity.Book;
 import com.kotbegemot.testtask2.api.entity.Reader;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
@@ -15,12 +12,12 @@ import javax.validation.constraints.PositiveOrZero;
 @AllArgsConstructor
 @NoArgsConstructor
 @ValidLibraryRecordDTO
+@ToString
 public class LibraryRecordDTO {
     @Getter @Setter
     @PositiveOrZero
     private Long id;
     @Getter @Setter
-    @ValidDate
     private String pickupTime;
     @Getter @Setter
     @NotNull

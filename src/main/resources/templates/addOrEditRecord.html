@@ -24,7 +24,7 @@
         <a class="btn btn-dark text-light nav-item active" href="/reader/addPage">
             Add reader
         </a>
-        <a class="btn btn-dark text-light nav-item active" href="/library/getBookPage">
+        <a class="btn btn-dark text-light nav-item active" href="/library/addPage">
             Get book
         </a>
         <!--        </div>-->
@@ -36,36 +36,36 @@
                 <form method="post" enctype="multipart/form-data" th:object="${newEntity}" th:action="@{{path}(path=${action})}">
                     <div class="mb-3" hidden>
                         <label for="id" class="form-label">
-                            Book id
+                            Library record id
                         </label>
                         <input type="text" id="id" class="form-control" placeholder="0" name="id" th:field="*{id}">
                     </div>
                     <div class="mb-3">
-                        <label for="name" class="form-label">Book name</label>
-                        <input type="text" id="name" placeholder="Alice in Wonderland" name="name"
-                               th:class="${#fields.hasErrors('name')}? 'form-control is-invalid' : 'form-control'"
-                               th:field="*{name}">
-                        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                        <label for="pickupTime" class="form-label">Pickup time</label>
+                        <input type="datetime-local" id="pickupTime" placeholder="" name="pickupTime"
+                               th:class="${#fields.hasErrors('pickupTime')}? 'form-control is-invalid' : 'form-control'"
+                               th:field="*{pickupTime}">
+                        <div th:if="${#fields.hasErrors('pickupTime')}" th:errors="*{pickupTime}"
                              class="alert alert-warning invalid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="author" class="form-label">Book author</label>
-                        <input type="text" id="author" class="form-control" placeholder="Type here something..."
-                               name="author"
-                               th:class="${#fields.hasErrors('author')}? 'form-control is-invalid' : 'form-control'"
-                               th:field="*{author}">
-                        <div th:if="${#fields.hasErrors('author')}" th:errors="*{author}"
+                        <label for="readerId" class="form-label">Reader id</label>
+                        <input type="text" id="readerId" class="form-control" placeholder="123"
+                               name="readerId"
+                               th:class="${#fields.hasErrors('readerId')}? 'form-control is-invalid' : 'form-control'"
+                               th:field="*{readerId}">
+                        <div th:if="${#fields.hasErrors('readerId')}" th:errors="*{readerId}"
                              class="alert alert-warning invalid-feedback"></div>
                     </div>
                     <div class="mb-3">
-                        <label for="isbn" class="form-label">Book ISBN</label>
-                        <input type="text" name="isbn" id="isbn" class="form-control"
-                               th:class="${#fields.hasErrors('isbn')}? 'form-control is-invalid' : 'form-control'"
-                               th:field="*{isbn}">
-                        <div th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}"
+                        <label for="bookId" class="form-label">Book id</label>
+                        <input type="text" name="bookId" id="bookId" class="form-control" placeholder="123"
+                               th:class="${#fields.hasErrors('bookId')}? 'form-control is-invalid' : 'form-control'"
+                               th:field="*{bookId}">
+                        <div th:if="${#fields.hasErrors('bookId')}" th:errors="*{bookId}"
                              class="alert alert-warning invalid-feedback"></div>
                     </div>
-                    <button class="btn btn-dark text-light nav-item active" type="submit">Add book</button>
+                    <button class="btn btn-dark text-light nav-item active" type="submit">Add record</button>
                 </form>
             </span>
         </div>

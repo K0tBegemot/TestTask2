@@ -10,9 +10,9 @@ import java.util.List;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public abstract class ReaderMapper implements EntityMapper<Reader, ReaderDTO>{
-    @Mapping(target = "birthday", source = "birthday", dateFormat = "dd-MM-yyyy")
+    @Mapping(target = "birthday", source = "birthday", dateFormat = "yyyy-MM-dd")
     public abstract Reader dtoToEntity(ReaderDTO readerDTO);
-    @Mapping(target = "birthday", source = "birthday", dateFormat = "dd-MM-yyyy")
+    @Mapping(target = "birthday", source = "birthday", dateFormat = "yyyy-MM-dd")
     public abstract ReaderDTO entityToDTO(Reader reader);
     public abstract List<ReaderDTO> entityListToDTO(List<Reader> readerList);
 }

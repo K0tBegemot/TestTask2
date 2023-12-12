@@ -12,8 +12,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Constraint(validatedBy = {ValidDateValidator.class})
-@NotNull
-@Size(min = 10, max = 10)
-@Pattern(regexp = "[0-9]{2}-[0-9]{2}-[0-9]{4}")
 public @interface ValidDate {
 }
